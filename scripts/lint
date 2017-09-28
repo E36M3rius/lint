@@ -129,7 +129,7 @@
         echo PHP_EOL;
       }
 
-      $error = shell_exec("php -l $path");
+      $error = shell_exec("php -l $path | grep -v 'error'");
       if ($error) {
         preg_match('/line ([0-9]+)/i', $error, $line);
         $line = $line[1];
