@@ -129,8 +129,9 @@
         echo PHP_EOL;
       }
 
-      $error = shell_exec("php -l $path | grep -iv 'No syntax errors detected'");
-      if ($error) {
+      $error = shell_exec("php -l $path");
+      
+      if ($error && !preg_match('/No syntax errors detected/', $error)) {
         preg_match('/line ([0-9]+)/i', $error, $line);
         $line = $line[1];
         $this->errors[] = (object)array(
